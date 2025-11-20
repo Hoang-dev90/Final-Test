@@ -1,0 +1,388 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1500px;
+  height: 100vh;
+  margin: 0 auto;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.start-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 20px 30px;
+  border-radius: 6px;
+  font-size: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.start-button:hover {
+  background-color: #45a049;
+}
+
+.timer-section {
+  text-align: center;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.timer-label {
+  display: block;
+  font-size: 25px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.timer {
+  background-color: #e8f5e8;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2e7d2e;
+}
+
+.game-content {
+  display: grid;
+  grid-template-columns: 400px 0.8fr 300px;
+  gap: 30px;
+  margin-bottom: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.reference-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.controls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.reference-image {
+  background: linear-gradient(135deg, #a8e6cf, #d4e6f1, #f8d7da, #e1bee7);
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.reference-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.removed-piece-area {
+  margin-top: 15px;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.removed-piece {
+  width: 80px;
+  height: 60px;
+  border: 2px solid #28a745;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.removed-piece img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.controls {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.direction-label {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 25px;
+}
+
+.dpad {
+  display: grid;
+  grid-template-rows: repeat(3, 45px);
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.dpad-row {
+  display: grid;
+  grid-template-columns: repeat(3, 45px);
+  gap: 2px;
+  justify-content: center;
+}
+
+.dpad-cell {
+  background-color: #e9ecef;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.dpad-left,
+.dpad-right,
+.dpad-up,
+.dpad-down {
+  background-color: #dee2e6;
+  border: 1px solid #adb5bd;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dpad-left:hover,
+.dpad-right:hover,
+.dpad-up:hover,
+.dpad-down:hover {
+  background-color: #c6c8ca;
+}
+
+.wasd-pad {
+  display: grid;
+  grid-template-rows: repeat(3, 45px);
+  gap: 2px;
+  margin-top: 20px;
+}
+
+.wasd-row {
+  display: grid;
+  grid-template-columns: repeat(3, 45px);
+  gap: 2px;
+  justify-content: center;
+}
+
+.wasd-cell {
+  background-color: #e9ecef;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.wasd-w,
+.wasd-a,
+.wasd-s,
+.wasd-d {
+  background-color: #dee2e6;
+  border: 1px solid #adb5bd;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: #495057;
+}
+
+.wasd-w:hover,
+.wasd-a:hover,
+.wasd-s:hover,
+.wasd-d:hover {
+  background-color: #c6c8ca;
+}
+
+.key-labels {
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+}
+
+.key-labels div {
+  margin: 2px 0;
+}
+
+.puzzle-area {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.puzzle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 3px;
+  background-color: #f0f0f0;
+  padding: 8px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 480px;
+  min-height: 300px;
+}
+
+.puzzle-piece {
+  border-radius: 4px;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  aspect-ratio: 1/1;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  min-height: 90px;
+}
+
+.piece-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.puzzle-piece:hover {
+  border-color: #007bff;
+  transform: scale(1.02);
+}
+
+.puzzle-piece.selected {
+  border-color: #ffc107;
+  border-width: 3px;
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+}
+
+.empty-piece {
+  background-color: #333;
+  border: 2px solid #555;
+}
+
+.history-section {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.history-section h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 25px;
+}
+
+.history-header {
+  display: grid;
+  grid-template-columns: 50px 1fr 100px;
+  gap: 25px;
+  padding: 10px;
+  background-color: #e9ecef;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.history-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.history-item {
+  display: grid;
+  grid-template-columns: 50px 1fr 100px;
+  gap: 30px;
+  padding: 8px 10px;
+  background-color: white;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+}
+
+.history-item:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .game-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .reference-panel,
+  .controls-panel {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .puzzle-grid {
+    max-width: 360px;
+  }
+
+  .reference-image {
+    max-width: 360px;
+  }
+
+  .game-header {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-content {
+    gap: 15px;
+  }
+
+  .reference-panel,
+  .controls-panel {
+    max-width: 320px;
+  }
+
+  .puzzle-grid {
+    max-width: 320px;
+  }
+
+  .reference-image {
+    max-width: 320px;
+  }
+}

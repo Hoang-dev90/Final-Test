@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Puzzle Game</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="game-header">
+        <button id="start-btn" class="start-button">Bắt đầu</button>
+      </div>
+
+      <div class="game-content">
+        <div class="reference-panel">
+          <div class="reference-image">
+            <img
+              src="Image/anime-nam-nu.jpg"
+              alt="Hình mẫu"
+              id="reference-img"
+            />
+          </div>
+          <div class="removed-piece-area" id="removed-piece-area">
+            <!-- Mảnh được di chuyển ra ngoài sẽ hiển thị ở đây -->
+          </div>
+        </div>
+
+        <div class="puzzle-area">
+          <div class="puzzle-grid" id="puzzle-grid">
+            <div class="puzzle-piece" data-position="0">
+              <img src="./Image/piece-1.jpg" alt="Mảnh 1" class="piece-img" />
+            </div>
+            <div class="puzzle-piece" data-position="1">
+              <img src="./Image/piece-2.jpg" alt="Mảnh 2" class="piece-img" />
+            </div>
+            <div class="puzzle-piece" data-position="2">
+              <img src="Image/piece-3.jpg" alt="Mảnh 3" class="piece-img" />
+            </div>
+            <div class="puzzle-piece" data-position="3">
+              <img src="Image/piece-4.jpg" alt="Mảnh 4" class="piece-img" />
+            </div>
+            <div class="puzzle-piece" data-position="4">
+              <img src="Image/piece-5.jpg" alt="Mảnh 5" class="piece-img" />
+            </div>
+            <div class="puzzle-piece" data-position="5">
+              <img src="Image/piece-6.jpg" alt="Mảnh 6" class="piece-img" />
+            </div>
+            <div class="puzzle-piece" data-position="6">
+              <img src="Image/piece-7.jpg" alt="Mảnh 7" class="piece-img" />
+            </div>
+            <div class="puzzle-piece" data-position="7">
+              <img src="Image/piece-8.jpg" alt="Mảnh 8" class="piece-img" />
+            </div>
+            <div class="puzzle-piece" data-position="8">
+              <img src="Image/piece-9.jpg" alt="Mảnh 9" class="piece-img" />
+            </div>
+            <div class="puzzle-piece" data-position="9">
+              <img src="Image/piece-10.jpg" alt="Mảnh 10" class="piece-img" />
+            </div>
+            <div class="puzzle-piece" data-position="10">
+              <img src="Image/piece-11.jpg" alt="Mảnh 11" class="piece-img" />
+            </div>
+            <div class="puzzle-piece" data-position="11">
+              <img src="Image/piece-12.jpg" alt="Mảnh 12" class="piece-img" />
+            </div>
+          </div>
+        </div>
+
+        <div class="controls-panel">
+          <div class="timer-section">
+            <span class="timer-label">Đồng Hồ</span>
+            <div class="timer" id="timer">00:00</div>
+          </div>
+
+          <div class="controls">
+            <div class="direction-pad">
+              <div class="direction-label">Hướng Dẫn Di Chuyển</div>
+              <div class="dpad">
+                <div class="dpad-row">
+                  <div class="dpad-cell"></div>
+                  <div class="dpad-cell dpad-up">↑</div>
+                  <div class="dpad-cell"></div>
+                </div>
+                <div class="dpad-row">
+                  <div class="dpad-cell dpad-left">←</div>
+                  <div class="dpad-cell dpad-down">↓</div>
+                  <div class="dpad-cell dpad-right">→</div>
+                </div>
+                <div class="dpad-row">
+                  <div class="dpad-cell"></div>
+                  <div class="dpad-cell"></div>
+                  <div class="dpad-cell"></div>
+                </div>
+              </div>
+              <div class="wasd-pad">
+                <div class="wasd-row">
+                  <div class="wasd-cell"></div>
+                  <div class="wasd-cell wasd-w">W</div>
+                  <div class="wasd-cell"></div>
+                </div>
+                <div class="wasd-row">
+                  <div class="wasd-cell wasd-a">A</div>
+                  <div class="wasd-cell wasd-s">S</div>
+                  <div class="wasd-cell wasd-d">D</div>
+                </div>
+                <div class="wasd-row">
+                  <div class="wasd-cell"></div>
+                  <div class="wasd-cell"></div>
+                  <div class="wasd-cell"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="history-section">
+        <h3>Lịch Sử Lượt Chơi</h3>
+        <div class="history-header">
+          <span>#</span>
+          <span>Bước đi</span>
+          <span>Thời Gian</span>
+        </div>
+        <div class="history-list" id="history-list">
+          <!-- Lịch sử sẽ được thêm bằng JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
