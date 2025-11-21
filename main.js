@@ -322,9 +322,9 @@ class PuzzleGame {
     // Cập nhật hiển thị lịch sử
     this.updateHistoryDisplay();
 
-    // Hiển thị thông báo YOU WIN!
+    // Hiển thị overlay thắng với hiệu ứng pháo hoa
     setTimeout(() => {
-      alert(`YOU WIN!\n\nThời gian: ${time}\nSố bước: ${this.moves}`);
+      this.showWinOverlay(time, this.moves);
     }, 500);
 
     // Reset nút và cho phép chơi lại
@@ -354,6 +354,99 @@ class PuzzleGame {
       .padStart(2, "0")}`;
   }
 
+  showWinOverlay(time, moves) {
+    const overlay = document.getElementById("win-overlay");
+    document.getElementById("final-time").textContent = time;
+    document.getElementById("final-moves").textContent = moves;
+    overlay.classList.add("show");
+
+    // Bắt đầu hiệu ứng pháo hoa
+    this.startFireworks();
+  }
+
+  startFireworks() {
+    const canvas = document.getElementById("fireworks-canvas");
+    const ctx = canvas.getContext("2d");
+    const puzzleArea = canvas.parentElement;
+    canvas.width = puzzleArea.offsetWidth;
+    canvas.height = puzzleArea.offsetHeight;
+
+    const particles = [];
+
+    class Particle {
+      constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.velocity = {
+          x: (Math.random() - 0.5) * 8,
+          y: (Math.random() - 0.5) * 8,
+        };
+        this.alpha = 1;
+        this.decay = Math.random() * 0.02 + 0.01;
+      }
+
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      update() {
+        this.velocity.y += 0.1;
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+        this.alpha -= this.decay;
+      }
+    }
+
+    function createFirework() {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height * 0.5;
+      const colors = [
+        "#ff0000",
+        "#00ff00",
+        "#0000ff",
+        "#ffff00",
+        "#ff00ff",
+        "#00ffff",
+        "#ff8800",
+        "#ff0088",
+      ];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+
+      for (let i = 0; i < 80; i++) {
+        particles.push(new Particle(x, y, color));
+      }
+    }
+
+    function animate() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((particle, index) => {
+        if (particle.alpha <= 0) {
+          particles.splice(index, 1);
+        } else {
+          particle.update();
+          particle.draw();
+        }
+      });
+
+      if (Math.random() < 0.1) {
+        createFirework();
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  }
+
   updateHistoryDisplay() {
     const historyList = document.getElementById("history-list");
     historyList.innerHTML = "";
@@ -373,6 +466,11 @@ class PuzzleGame {
   setupEventListeners() {
     document.getElementById("start-btn").addEventListener("click", () => {
       this.startGame();
+    });
+
+    // Đóng overlay thắng
+    document.getElementById("close-win").addEventListener("click", () => {
+      document.getElementById("win-overlay").classList.remove("show");
     });
 
     // Thêm event listeners cho các ô puzzle

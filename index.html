@@ -21,9 +21,7 @@
               id="reference-img"
             />
           </div>
-          <div class="removed-piece-area" id="removed-piece-area">
-            <!-- Mảnh được di chuyển ra ngoài sẽ hiển thị ở đây -->
-          </div>
+          <div class="removed-piece-area" id="removed-piece-area"></div>
         </div>
 
         <div class="puzzle-area">
@@ -63,6 +61,19 @@
             </div>
             <div class="puzzle-piece" data-position="11">
               <img src="Image/piece-12.jpg" alt="Mảnh 12" class="piece-img" />
+            </div>
+          </div>
+
+          <!-- Win Overlay inside puzzle-area -->
+          <div id="win-overlay" class="win-overlay">
+            <canvas id="fireworks-canvas"></canvas>
+            <div class="win-message">
+              <h1 class="win-title">YOU WIN!</h1>
+              <div class="win-details">
+                <p>Thời gian: <span id="final-time">00:00</span></p>
+                <p>Số bước: <span id="final-moves">0</span></p>
+              </div>
+              <button id="close-win" class="close-win-btn">Đóng</button>
             </div>
           </div>
         </div>
@@ -121,9 +132,7 @@
           <span>Bước đi</span>
           <span>Thời Gian</span>
         </div>
-        <div class="history-list" id="history-list">
-          <!-- Lịch sử sẽ được thêm bằng JavaScript -->
-        </div>
+        <div class="history-list" id="history-list"></div>
       </div>
     </div>
 
